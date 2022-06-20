@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AddUserPresenterInput {
-
+    func addUser(userId: String, name: String, comment: String)
 }
 
 protocol AddUserPresenterOutput: AnyObject {

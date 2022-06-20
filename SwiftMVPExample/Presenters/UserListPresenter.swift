@@ -11,6 +11,7 @@ protocol UserListPresenterInput {
     func viewDidLoad()
     func usersCount() -> Int
     func users(row: Int) -> User
+    func fetchUsers()
 }
 
 protocol UserListPresenterOutput: AnyObject {
