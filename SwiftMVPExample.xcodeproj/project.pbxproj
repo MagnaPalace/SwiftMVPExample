@@ -17,6 +17,9 @@
 		AE2CB5B9284CE1F9008193F3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB5B8284CE1F9008193F3 /* Config.swift */; };
 		AE2CB5BD284CE45B008193F3 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB5BC284CE45B008193F3 /* StringExtension.swift */; };
 		AE2CB5C0284CE481008193F3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2CB5C2284CE481008193F3 /* Localizable.strings */; };
+		AE7EA7CF28608BDA0091E6D4 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EA7CE28608BDA0091E6D4 /* AddUserViewController.swift */; };
+		AE7EA7D128608C3C0091E6D4 /* AddUserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7EA7D028608C3C0091E6D4 /* AddUserPresenter.swift */; };
+		AE7EA7D2286095480091E6D4 /* AddUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE7EA7CD28608B740091E6D4 /* AddUserViewController.storyboard */; };
 		AEAD424C284CD77F00F30342 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAD424B284CD77F00F30342 /* AppDelegate.swift */; };
 		AEAD424E284CD77F00F30342 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAD424D284CD77F00F30342 /* SceneDelegate.swift */; };
 		AEAD4253284CD77F00F30342 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEAD4251284CD77F00F30342 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 		AE2CB5BC284CE45B008193F3 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		AE2CB5C1284CE481008193F3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2CB5C3284CE492008193F3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AE7EA7CD28608B740091E6D4 /* AddUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddUserViewController.storyboard; sourceTree = "<group>"; };
+		AE7EA7CE28608BDA0091E6D4 /* AddUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
+		AE7EA7D028608C3C0091E6D4 /* AddUserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserPresenter.swift; sourceTree = "<group>"; };
 		AEAD4248284CD77F00F30342 /* SwiftMVPExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftMVPExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEAD424B284CD77F00F30342 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEAD424D284CD77F00F30342 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				AE2CB5A0284CDA46008193F3 /* UserListViewController.swift */,
+				AE7EA7CE28608BDA0091E6D4 /* AddUserViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -68,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				AEAD4251284CD77F00F30342 /* Main.storyboard */,
+				AE7EA7CD28608B740091E6D4 /* AddUserViewController.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -80,12 +88,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		AE2CB5AB284CDD8E008193F3 /* Presenter */ = {
+		AE2CB5AB284CDD8E008193F3 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
 				AE2CB5AC284CDE35008193F3 /* UserListPresenter.swift */,
+				AE7EA7D028608C3C0091E6D4 /* AddUserPresenter.swift */,
 			);
-			path = Presenter;
+			path = Presenters;
 			sourceTree = "<group>";
 		};
 		AE2CB5AE284CE189008193F3 /* Managers */ = {
@@ -129,7 +138,7 @@
 				AE2CB5B8284CE1F9008193F3 /* Config.swift */,
 				AE2CB5B1284CE1BC008193F3 /* Resources */,
 				AE2CB5AE284CE189008193F3 /* Managers */,
-				AE2CB5AB284CDD8E008193F3 /* Presenter */,
+				AE2CB5AB284CDD8E008193F3 /* Presenters */,
 				AE2CB5A6284CDC70008193F3 /* Models */,
 				AE2CB59D284CDA00008193F3 /* Controllers */,
 				AE2CB5A2284CDA67008193F3 /* Views */,
@@ -204,6 +213,7 @@
 			files = (
 				AEAD4258284CD78400F30342 /* LaunchScreen.storyboard in Resources */,
 				AE2CB5C0284CE481008193F3 /* Localizable.strings in Resources */,
+				AE7EA7D2286095480091E6D4 /* AddUserViewController.storyboard in Resources */,
 				AEAD4255284CD78400F30342 /* Assets.xcassets in Resources */,
 				AEAD4253284CD77F00F30342 /* Main.storyboard in Resources */,
 			);
@@ -217,8 +227,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE2CB5B5284CE1E2008193F3 /* UserListTableViewCellModel.swift in Sources */,
+				AE7EA7CF28608BDA0091E6D4 /* AddUserViewController.swift in Sources */,
 				AE2CB5B7284CE1E2008193F3 /* UserListTableViewCell.swift in Sources */,
 				AE2CB5AA284CDCA5008193F3 /* User.swift in Sources */,
+				AE7EA7D128608C3C0091E6D4 /* AddUserPresenter.swift in Sources */,
 				AE2CB5A1284CDA46008193F3 /* UserListViewController.swift in Sources */,
 				AEAD424C284CD77F00F30342 /* AppDelegate.swift in Sources */,
 				AE2CB5AD284CDE35008193F3 /* UserListPresenter.swift in Sources */,

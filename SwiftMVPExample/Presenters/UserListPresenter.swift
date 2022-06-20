@@ -33,7 +33,7 @@ class UserListPresenter: UserListPresenterInput {
     }
     
     /// ユーザーの全取得
-    private func fetchUsers() {
+    func fetchUsers() {
         let api = ApiManager()
         let url = URL(string: BASE_URL + API_URL + UserApi.all.rawValue)!
         IndicatorView.shared.startIndicator()

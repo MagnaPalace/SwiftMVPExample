@@ -23,21 +23,21 @@ class UserListViewController: UIViewController {
         self.presenter = UserListPresenter.init(with: self)
         self.presenter.viewDidLoad()
         
-//        self.setNavigationBar()
+        self.setNavigationBar()
     }
     
-//    private func setNavigationBar() {
-//        self.navigationController?.navigationBar.tintColor = .white
-//        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
-//        self.navigationItem.rightBarButtonItem = addBarButton
-//    }
+    private func setNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .white
+        let addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonTapped(_:)))
+        self.navigationItem.rightBarButtonItem = addBarButton
+    }
     
-//    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
-//        let storyboard = UIStoryboard(name: "AddUserViewController", bundle: nil)
-//        let addUserViewController = storyboard.instantiateViewController(withIdentifier: "AddUserViewController") as! AddUserViewController
-//        addUserViewController.delegate = self
-//        self.navigationController?.pushViewController(addUserViewController, animated: true)
-//    }
+    @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "AddUserViewController", bundle: nil)
+        let addUserViewController = storyboard.instantiateViewController(withIdentifier: "AddUserViewController") as! AddUserViewController
+        addUserViewController.delegate = self
+        self.navigationController?.pushViewController(addUserViewController, animated: true)
+    }
 
 }
 
@@ -78,10 +78,10 @@ extension UserListViewController: UITableViewDataSource {
     
 }
 
-//extension ViewController: AddUserViewControllerDelegate {
-//
-//    func didEndAddUser() {
-//        self.viewModel.fetchUsers()
-//    }
-//
-//}
+extension UserListViewController: AddUserViewControllerDelegate {
+
+    func didEndAddUser() {
+        self.presenter.fetchUsers()
+    }
+
+}
