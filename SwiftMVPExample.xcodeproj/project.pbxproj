@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE07CE4E286330A200D26292 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE07CE4D286330A200D26292 /* UserDataModel.swift */; };
 		AE2CB5A1284CDA46008193F3 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB5A0284CDA46008193F3 /* UserListViewController.swift */; };
 		AE2CB5AA284CDCA5008193F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB5A9284CDCA5008193F3 /* User.swift */; };
 		AE2CB5AD284CDE35008193F3 /* UserListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2CB5AC284CDE35008193F3 /* UserListPresenter.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE07CE4D286330A200D26292 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		AE2CB5A0284CDA46008193F3 /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		AE2CB5A9284CDCA5008193F3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AE2CB5AC284CDE35008193F3 /* UserListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListPresenter.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				AE2CB5A9284CDCA5008193F3 /* User.swift */,
+				AE07CE4D286330A200D26292 /* UserDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			files = (
 				AE2CB5B5284CE1E2008193F3 /* UserListTableViewCellModel.swift in Sources */,
 				AE7EA7CF28608BDA0091E6D4 /* AddUserViewController.swift in Sources */,
+				AE07CE4E286330A200D26292 /* UserDataModel.swift in Sources */,
 				AE2CB5B7284CE1E2008193F3 /* UserListTableViewCell.swift in Sources */,
 				AE2CB5AA284CDCA5008193F3 /* User.swift in Sources */,
 				AE7EA7D128608C3C0091E6D4 /* AddUserPresenter.swift in Sources */,

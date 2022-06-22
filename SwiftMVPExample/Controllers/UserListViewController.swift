@@ -70,7 +70,7 @@ extension UserListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = self.presenter.users(row: indexPath.row)
+        let user = self.presenter.getUser(row: indexPath.row)
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "UserListTableViewCell") as? UserListTableViewCell
         cell?.initialize(model: .init(userNo: user.userId, name: user.name, comment: user.comment))
         return cell!
@@ -81,7 +81,7 @@ extension UserListViewController: UITableViewDataSource {
 extension UserListViewController: AddUserViewControllerDelegate {
 
     func didEndAddUser() {
-        self.presenter.fetchUsers()
+        self.presenter.viewDidLoad()
     }
 
 }
