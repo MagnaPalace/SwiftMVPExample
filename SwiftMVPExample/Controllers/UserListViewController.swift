@@ -57,6 +57,14 @@ extension UserListViewController: UserListPresenterOutput {
         }
     }
     
+    func startIndicator() {
+        IndicatorView.shared.startIndicator()
+    }
+    
+    func stopIndicator() {
+        IndicatorView.shared.stopIndicator()
+    }
+    
 }
 
 extension UserListViewController: UITableViewDelegate {

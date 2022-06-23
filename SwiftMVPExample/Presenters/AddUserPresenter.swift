@@ -14,6 +14,8 @@ protocol AddUserPresenterInput {
 protocol AddUserPresenterOutput: AnyObject {
     func didSuccessAddUserApi()
     func addUserApiFailed()
+    func startIndicator()
+    func stopIndicator()
 }
 
 class AddUserPresenter: AddUserPresenterInput {
@@ -28,9 +30,9 @@ class AddUserPresenter: AddUserPresenterInput {
     }
     
     func addUser(userId: String, name: String, comment: String) {
-        IndicatorView.shared.startIndicator()
+        self.view?.startIndicator()
         dataModel.addUser(userId: userId, name: name, comment: comment) { (error) in
-            IndicatorView.shared.stopIndicator()
+            self.view?.stopIndicator()
             guard error == nil else {
                 self.view?.addUserApiFailed()
                 return

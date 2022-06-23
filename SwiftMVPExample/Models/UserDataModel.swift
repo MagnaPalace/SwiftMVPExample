@@ -25,7 +25,7 @@ class UserDataModel: UserDataModelInput {
             do {
                 let result = try await api.requestAsync(param: nil, url: url)
                 guard let json = (result as AnyObject)["users"] as? [User.Json], json.count > 0 else {
-                    completion([], .failed)
+                    completion([], .noResponse)
                     return
                 }
                 let users = json.map { User.fromJson(user: $0) }
@@ -62,7 +62,7 @@ class UserDataModel: UserDataModelInput {
             do {
                 let result = try await api.requestAsync(param: parameter as [String : Any], url: url)
                 print(result)
-                completion(.failed)
+                completion(.none)
             } catch ApiManager.ApiError.httpError(let error) {
                 print("\(error.statusCode) : \(error.message)")
                 completion(.httpError(error))

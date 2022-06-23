@@ -17,6 +17,8 @@ protocol UserListPresenterInput {
 protocol UserListPresenterOutput: AnyObject {
     func didFetch()
     func getUsersApiFailed()
+    func startIndicator()
+    func stopIndicator()
 }
 
 class UserListPresenter: UserListPresenterInput {
@@ -33,9 +35,9 @@ class UserListPresenter: UserListPresenterInput {
     }
     
     func viewDidLoad() {
-        IndicatorView.shared.startIndicator()
+        self.view?.startIndicator()
         dataModel.fetchUsers() { (users, error) in
-            IndicatorView.shared.stopIndicator()
+            self.view?.stopIndicator()
             guard error == nil else {
                 self.view?.getUsersApiFailed()
                 return

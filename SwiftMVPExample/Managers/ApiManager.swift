@@ -23,7 +23,6 @@ class ApiManager {
         case noResponse
         case httpError(HttpResponseError)
         case other(Error)
-        case failed
     }
     
     

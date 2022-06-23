@@ -96,6 +96,14 @@ extension AddUserViewController: AddUserPresenterOutput {
         self.addUserFailedAlert()
     }
     
+    func startIndicator() {
+        IndicatorView.shared.startIndicator()
+    }
+    
+    func stopIndicator() {
+        IndicatorView.shared.stopIndicator()
+    }
+    
 }
 
 protocol AddUserViewControllerDelegate: AnyObject {
