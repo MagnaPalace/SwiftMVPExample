@@ -22,9 +22,16 @@ class ApiManager {
     enum ApiError: Error {
         case noResponse
         case httpError(HttpResponseError)
+        case other(Error)
+        case failed
     }
     
-    /// 通常版
+    
+    /// リクエスト 通常版
+    /// - Parameters:
+    ///   - param: Postパラメータ
+    ///   - url: API URL
+    ///   - completion: 成否 / 結果 / エラー
     func request(param: [String: Any]?, url: URL, completion: @escaping (_ success: Bool, _ result: Any?, _ error: NSError?) -> ()) {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -54,8 +61,12 @@ class ApiManager {
         }
         task.resume()
     }
-    
-    /// Swift 5.5 Concurrency async/await
+
+    /// リクエスト Swift 5.5 Concurrency async/await
+    /// - Parameters:
+    ///   - param: Postパラメータ
+    ///   - url: API URL
+    /// - Returns: 結果 / エラー
     func requestAsync(param: [String: Any]?, url: URL) async throws -> Any {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

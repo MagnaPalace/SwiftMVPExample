@@ -33,8 +33,10 @@ class UserListPresenter: UserListPresenterInput {
     }
     
     func viewDidLoad() {
-        dataModel.fetchUsers() { (success, users, error) in
-            guard success else {
+        IndicatorView.shared.startIndicator()
+        dataModel.fetchUsers() { (users, error) in
+            IndicatorView.shared.stopIndicator()
+            guard error == nil else {
                 self.view?.getUsersApiFailed()
                 return
             }

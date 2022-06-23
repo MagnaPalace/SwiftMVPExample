@@ -28,8 +28,10 @@ class AddUserPresenter: AddUserPresenterInput {
     }
     
     func addUser(userId: String, name: String, comment: String) {
-        dataModel.addUser(userId: userId, name: name, comment: comment) { (success, error) in
-            guard success else {
+        IndicatorView.shared.startIndicator()
+        dataModel.addUser(userId: userId, name: name, comment: comment) { (error) in
+            IndicatorView.shared.stopIndicator()
+            guard error == nil else {
                 self.view?.addUserApiFailed()
                 return
             }

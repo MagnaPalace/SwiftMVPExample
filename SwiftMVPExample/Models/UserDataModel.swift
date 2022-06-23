@@ -8,44 +8,46 @@
 import Foundation
 
 protocol UserDataModelInput {
-    func fetchUsers(completion: @escaping (_ success: Bool, _ result: [User], _ error: NSError?) -> ())
-    func addUser(userId: String, name: String, comment: String, completion: @escaping (_ success: Bool, _ error: NSError?) -> ())
+    func fetchUsers(completion: @escaping (_ result: [User], _ error: ApiManager.ApiError?) -> ())
+    func addUser(userId: String, name: String, comment: String, completion: @escaping (_ error: ApiManager.ApiError?) -> ())
 }
 
 class UserDataModel: UserDataModelInput {
     
     /// ユーザーの全取得
-    func fetchUsers(completion: @escaping (_ success: Bool, _ result: [User], _ error: NSError?) -> ()) {
+    /// - Parameter completion: 結果 / エラー
+    func fetchUsers(completion: @escaping (_ result: [User], _ error: ApiManager.ApiError?) -> ()) {
         let api = ApiManager()
         let url = URL(string: BASE_URL + API_URL + UserApi.all.rawValue)!
-        IndicatorView.shared.startIndicator()
         
         // Swift 5.5 Concurrency async/await
         Task {
             do {
                 let result = try await api.requestAsync(param: nil, url: url)
                 guard let json = (result as AnyObject)["users"] as? [User.Json], json.count > 0 else {
-                    IndicatorView.shared.stopIndicator()
-                    completion(false, [], nil)
+                    completion([], .failed)
                     return
                 }
-                IndicatorView.shared.stopIndicator()
                 let users = json.map { User.fromJson(user: $0) }
-                completion(true, users, nil)
+                completion(users, .none)
             } catch ApiManager.ApiError.httpError(let error) {
-                IndicatorView.shared.stopIndicator()
                 print("\(error.statusCode) : \(error.message)")
-                completion(false, [], error as NSError)
+                completion([], .httpError(error))
             } catch {
-                IndicatorView.shared.stopIndicator()
                 print(error.localizedDescription)
-                completion(false, [], error as NSError)
+                completion([], .other(error))
             }
         }
     }
     
+    
     /// ユーザーの追加
-    func addUser(userId: String, name: String, comment: String, completion: @escaping (_ success: Bool, _ error: NSError?) -> ()) {
+    /// - Parameters:
+    ///   - userId: ユーザーID
+    ///   - name: 名前
+    ///   - comment: コメント
+    ///   - completion: エラー
+    func addUser(userId: String, name: String, comment: String, completion: @escaping (_ error: ApiManager.ApiError?) -> ()) {
         let api = ApiManager()
         let url = URL(string: BASE_URL + API_URL + UserApi.store.rawValue)!
         
@@ -55,23 +57,18 @@ class UserDataModel: UserDataModelInput {
             User.Key.comment.rawValue: comment,
         ]
 
-        IndicatorView.shared.startIndicator()
-
         // Swift 5.5 Concurrency async/await
         Task {
             do {
                 let result = try await api.requestAsync(param: parameter as [String : Any], url: url)
                 print(result)
-                IndicatorView.shared.stopIndicator()
-                completion(true, nil)
+                completion(.failed)
             } catch ApiManager.ApiError.httpError(let error) {
-                IndicatorView.shared.stopIndicator()
                 print("\(error.statusCode) : \(error.message)")
-                completion(false, error as NSError)
+                completion(.httpError(error))
             } catch {
-                IndicatorView.shared.stopIndicator()
                 print(error.localizedDescription)
-                completion(false, error as NSError)
+                completion(.other(error))
             }
         }
     }
