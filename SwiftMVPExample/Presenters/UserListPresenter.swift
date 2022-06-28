@@ -12,13 +12,15 @@ protocol UserListPresenterInput {
     func viewDidLoad()
     func usersCount() -> Int
     func getUser(row: Int) -> User
+    func addBarButtonTapped()
 }
 
 protocol UserListPresenterOutput: AnyObject {
-    func didFetch()
-    func getUsersApiFailed()
+    func reloadTableView()
+    func showFetchUsersApiFailedAlert()
     func startIndicator()
     func stopIndicator()
+    func transitionToAddUserView()
 }
 
 class UserListPresenter: UserListPresenterInput {
@@ -39,11 +41,11 @@ class UserListPresenter: UserListPresenterInput {
         dataModel.fetchUsers() { (users, error) in
             self.view?.stopIndicator()
             guard error == nil else {
-                self.view?.getUsersApiFailed()
+                self.view?.showFetchUsersApiFailedAlert()
                 return
             }
             self.users = users
-            self.view?.didFetch()
+            self.view?.reloadTableView()
         }
     }
     
@@ -53,6 +55,10 @@ class UserListPresenter: UserListPresenterInput {
         
     func getUser(row: Int) -> User {
         return self.users[row]
+    }
+    
+    func addBarButtonTapped() {
+        self.view?.transitionToAddUserView()
     }
     
 }

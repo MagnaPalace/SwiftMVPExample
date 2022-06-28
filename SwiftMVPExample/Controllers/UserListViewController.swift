@@ -33,23 +33,20 @@ class UserListViewController: UIViewController {
     }
     
     @objc func addBarButtonTapped(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "AddUserViewController", bundle: nil)
-        let addUserViewController = storyboard.instantiateViewController(withIdentifier: "AddUserViewController") as! AddUserViewController
-        addUserViewController.delegate = self
-        self.navigationController?.pushViewController(addUserViewController, animated: true)
+        self.presenter.addBarButtonTapped()
     }
 
 }
 
 extension UserListViewController: UserListPresenterOutput {
     
-    func didFetch() {
+    func reloadTableView() {
         DispatchQueue.main.async{
             self.tableView.reloadData()
         }
     }
     
-    func getUsersApiFailed() {
+    func showFetchUsersApiFailedAlert() {
         DispatchQueue.main.async{
             let alert = UIAlertController(title: String.Localize.errorAlertTitle.text, message: String.Localize.networkCommunicationFailedMessage.text, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: String.Localize.closeAlertButtonTitle.text, style: .cancel, handler: nil))
@@ -63,6 +60,13 @@ extension UserListViewController: UserListPresenterOutput {
     
     func stopIndicator() {
         IndicatorView.shared.stopIndicator()
+    }
+    
+    func transitionToAddUserView() {
+        let storyboard = UIStoryboard(name: "AddUserViewController", bundle: nil)
+        let addUserViewController = storyboard.instantiateViewController(withIdentifier: "AddUserViewController") as! AddUserViewController
+        addUserViewController.delegate = self
+        self.navigationController?.pushViewController(addUserViewController, animated: true)
     }
     
 }

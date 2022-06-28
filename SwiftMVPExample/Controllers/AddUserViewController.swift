@@ -85,15 +85,17 @@ extension AddUserViewController: UITextFieldDelegate {
 
 extension AddUserViewController: AddUserPresenterOutput {
     
-    func didSuccessAddUserApi() {
+    func returnToUserListView() {
         DispatchQueue.main.async{
             self.navigationController?.popViewController(animated: true)
         }
         self.delegate?.didEndAddUser()
     }
     
-    func addUserApiFailed() {
-        self.addUserFailedAlert()
+    func showAddUserApiFailedAlert() {
+        DispatchQueue.main.async{
+            self.addUserFailedAlert()
+        }
     }
     
     func startIndicator() {
