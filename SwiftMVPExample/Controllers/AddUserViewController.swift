@@ -33,11 +33,7 @@ class AddUserViewController: UIViewController {
     }
 
     @IBAction func addUserButtonTapped(_ sender: Any) {
-        guard userIdTextField.text?.count ?? 0 > 0, nameTextField.text?.count ?? 0 > 0, commentTextField.text?.count ?? 0 > 0 else {
-            self.notCompletedInputFieldAlert()
-            return
-        }
-        self.presenter.addUser(userId: userIdTextField.text!, name: nameTextField.text!, comment: commentTextField.text!)
+        self.presenter.addUserButtonTapped(userId: userIdTextField.text ?? "", name: nameTextField.text ?? "", comment: commentTextField.text ?? "")
     }
     
     /// ナンバーキーボードに完了ボタン追加
@@ -104,6 +100,12 @@ extension AddUserViewController: AddUserPresenterOutput {
     
     func stopIndicator() {
         IndicatorView.shared.stopIndicator()
+    }
+    
+    func showNotCompletedInputFieldAlert() {
+        DispatchQueue.main.async{
+            self.notCompletedInputFieldAlert()
+        }
     }
     
 }

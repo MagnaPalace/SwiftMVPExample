@@ -8,7 +8,7 @@
 import Foundation
 
 protocol AddUserPresenterInput {
-    func addUser(userId: String, name: String, comment: String)
+    func addUserButtonTapped(userId: String, name: String, comment: String)
 }
 
 protocol AddUserPresenterOutput: AnyObject {
@@ -16,6 +16,7 @@ protocol AddUserPresenterOutput: AnyObject {
     func showAddUserApiFailedAlert()
     func startIndicator()
     func stopIndicator()
+    func showNotCompletedInputFieldAlert()
 }
 
 class AddUserPresenter: AddUserPresenterInput {
@@ -29,7 +30,11 @@ class AddUserPresenter: AddUserPresenterInput {
         self.dataModel = UserDataModel()
     }
     
-    func addUser(userId: String, name: String, comment: String) {
+    func addUserButtonTapped(userId: String, name: String, comment: String) {
+        guard userId.count > 0, name.count > 0, comment.count > 0 else {
+            self.view?.showNotCompletedInputFieldAlert()
+            return
+        }
         self.view?.startIndicator()
         dataModel.addUser(userId: userId, name: name, comment: comment) { (error) in
             self.view?.stopIndicator()
