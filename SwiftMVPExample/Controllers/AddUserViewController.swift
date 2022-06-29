@@ -33,7 +33,7 @@ class AddUserViewController: UIViewController {
     }
 
     @IBAction func addUserButtonTapped(_ sender: Any) {
-        self.presenter.addUserButtonTapped(userId: userIdTextField.text ?? "", name: nameTextField.text ?? "", comment: commentTextField.text ?? "")
+        self.presenter.addUserButtonTapped(userId: userIdTextField.text, name: nameTextField.text, comment: commentTextField.text)
     }
     
     /// ナンバーキーボードに完了ボタン追加
